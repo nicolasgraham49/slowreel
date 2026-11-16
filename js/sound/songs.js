@@ -1,7 +1,7 @@
 // songs.js - Nico's songs as sound sources. Files are only read, never changed.
 // loadSong(ctx, id, baseUrl) fetches `${baseUrl}${id}.mp3`, decodes once and caches the AudioBuffer for every context.
 
-import { linkSongList, isUserSong, userSongBytes } from '../../lib/user-songs.js?v=8';
+import { linkSongList, isUserSong, userSongBytes } from '../../lib/user-songs.js?v=11';
 
 export const SONGS = [
   { id: 'after-the-storm', title: 'After the Storm', duration: 209.9 },

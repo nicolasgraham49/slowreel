@@ -9,7 +9,7 @@
 //   dustkeys   a worn electric piano: sine body + bark partial, tremolo, wow and vinyl crackle living inside the note
 //   canopy     a forest texture (kind 'texture', sounds while held): leaf-wind noise + synthesized bird chirps (voice.tick)
 // Integrator: instruments.js registers WORLD_SOUNDS with region 'Worlds'.
-import { clamp, mtof, rng, noiseBuffer, disconnectAll, release as relParam } from './util.js?v=10b';
+import { clamp, mtof, rng, noiseBuffer, disconnectAll, release as relParam } from './util.js?v=11';
 
 const P = (id, name, min, max, def, extra = {}) => ({ id, name, min, max, default: def, unit: '', ...extra });
 const keyScale = (midi, per = 24) => Math.pow(2, (60 - midi) / per);
