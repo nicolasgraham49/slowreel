@@ -10,7 +10,7 @@
 //   openWorlds({ onPick })             the chooser dialog; onPick(world)
 //   worldGuideFor(project, scaleName)  a recipe-shaped guide for recipes-panel openTips
 //   riverRoles(project)                [{trackId, role}] for the River, from the project's world
-import { h, icon } from './controls.js?v=8';
+import { h, icon } from './controls.js?v=11';
 
 const fx = (id, params) => ({ id, params, bypass: false });
 const room = (type, o = {}) => ({ type, mix: 1, size: 1.4, tone: 0.45, preDelay: 0.03, shimmer: 0, ...o });

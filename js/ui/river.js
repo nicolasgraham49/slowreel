@@ -13,10 +13,10 @@
 //   stopRiver() / riverInfo()         state for the deck key and the tests
 //   captureRiver()                    writes the captured notes to clips; returns how many notes were kept
 //   openRiver()                       the River dialog
-import { S, on, edit, uid, clamp } from './state.js?v=8';
-import { h, icon } from './controls.js?v=8';
-import { WORLDS, worldById, riverRoles, riverCfgFor } from './worlds.js?v=8';
-import { scaleById, keyIndex } from './theory.js?v=8';
+import { S, on, edit, uid, clamp } from './state.js?v=11';
+import { h, icon } from './controls.js?v=11';
+import { WORLDS, worldById, riverRoles, riverCfgFor } from './worlds.js?v=11';
+import { scaleById, keyIndex } from './theory.js?v=11';
 
 export const MOODS = [
   { id: 'calm', name: 'Calm', density: 0.55, chordMul: 1.3, vel: 0.72, regShift: 0, sparkle: 0.7, melLen: [2, 4.5] },
