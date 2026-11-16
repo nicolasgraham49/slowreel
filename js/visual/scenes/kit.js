@@ -1,17 +1,17 @@
 // kit.js - the Slowreel scene kit. Everything a scene needs to look filmic, in core THREE only (THREE is always passed in;
 // nothing here imports three or its addons). See SCENES-API.md for the contract and examples.
-//   import * as kit from './kit.js?v=8';
+//   import * as kit from './kit.js?v=11';
 // GPU pieces: createPost (post chain), createSky (+ fog, env, lights), createParticles (rain/snow/petals/dust/fireflies),
 // createMirror, createWater, patchWet, patchFog, bakeTexture, noiseTexture, normalMapFromHeight, canvasTexture,
 // dataTexture, heightfield, createPass, cached, createBag. CPU pieces (this file): rng, hashSeed, math, noise2/3, fbm2,
 // ridged2, audio smoothing, flicker, lightning, camera paths, aspect framing, quality presets, GLSL chunks.
-import * as GLSL from './kit-glsl.js?v=10b';
+import * as GLSL from './kit-glsl.js?v=11';
 export { GLSL };
-export { createPass, PASS_VS, halfFloatOK, cached, disposeCached, bakeTexture, noiseTexture, normalMapFromHeight, canvasTexture, dataTexture, createBag } from './kit-gpu.js?v=10b';
-export { createPost, defaultGrade, POST_Q } from './kit-post.js?v=10b';
-export { createSky, patchFog, defaultSky, defaultFog, sunFromHour, SKY_Q } from './kit-sky.js?v=10b';
-export { createParticles, windDrift, windAt } from './kit-fx.js?v=10b';
-export { createMirror, createWater, patchWet, heightfield } from './kit-surface.js?v=10b';
+export { createPass, PASS_VS, halfFloatOK, cached, disposeCached, bakeTexture, noiseTexture, normalMapFromHeight, canvasTexture, dataTexture, createBag } from './kit-gpu.js?v=11';
+export { createPost, defaultGrade, POST_Q } from './kit-post.js?v=11';
+export { createSky, patchFog, defaultSky, defaultFog, sunFromHour, SKY_Q } from './kit-sky.js?v=11';
+export { createParticles, windDrift, windAt } from './kit-fx.js?v=11';
+export { createMirror, createWater, patchWet, heightfield } from './kit-surface.js?v=11';
 
 // ------------------------------------------------------------------------------------------------ quality
 /**
