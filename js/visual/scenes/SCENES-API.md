@@ -12,7 +12,7 @@ Reference scene: `scenes/kit-demo.js`. It is hidden from the picker; you can cop
 
 ```js
 // scenes/hanok-rain.js
-import * as kit from './kit.js?v=8';          // relative path, ends in .js, carries ?v=8 (the stamp tool rewrites it)
+import * as kit from './kit.js?v=11';          // relative path, ends in .js, carries ?v=11 (the stamp tool rewrites it)
 
 export const meta = {
   id: 'hanok-rain',                           // must equal the registry id (= file name)
@@ -87,7 +87,7 @@ export function createScene({ THREE, canvas, renderer, width, height, pixelRatio
 8. **Never touch the main thread:** a scene only ever runs in workers in the app. No `window`, no `document`, no
    `localStorage`.
 
-## 2. The kit (`import * as kit from './kit.js?v=8'`)
+## 2. The kit (`import * as kit from './kit.js?v=11'`)
 
 All of it is core THREE (THREE is passed in), deterministic, and works in workers. Signatures are below; the JSDoc in
 each file has details.
@@ -284,7 +284,7 @@ AnalyserNode (`createLiveFeatures`), and `idleFeatures(t)` gives a calm stand-in
 These ids are pre-registered: `rain-window` (Cozy), `hanok-rain` (Korea), `bamboo-temple` (Japan), `guilin-mist`
 (China), `golden-ocean` and `aurora-snow` (Nature), `neon-night` (Night city), `heart` (Classic, the original fox
 heart wrapped as a scene; variants = its moods sakura / kitsune / moon) and `kit-demo` (hidden). The registry loads a
-scene lazily with `import('./<id>.js?v=8')`. It checks that `meta.id` matches, that `variants` is a non-empty
+scene lazily with `import('./<id>.js?v=11')`. It checks that `meta.id` matches, that `variants` is a non-empty
 `[{id, name}]` and that `createScene` exists. A missing, throwing or invalid module is hidden from the picker and never
 breaks the studio. `meta` overrides the registry's static name, desc, group and swatch once loaded.
 
