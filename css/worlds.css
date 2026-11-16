@@ -1,0 +1,25 @@
+/* worlds.css - [Slowreel upgrade] Worlds chooser, Endless River dialog, and the per-world accent on the deck.
+   The chooser reuses the starter dialog's classes (css/starters.css); tokens come from css/studio.css. */
+
+/* ------------------------------------------------------------------ world accent on the studio
+   A world tape tints one seam of the deck with its colour, so the room itself says where you are. */
+body[data-world] .deck { box-shadow: inset 0 -2px 0 var(--world-accent, transparent), inset 0 1px 0 var(--seam-hi), 0 1px 2px rgba(0, 0, 0, .4); }
+body[data-world] .brand-name { color: var(--world-accent, var(--ink)); }
+
+/* ------------------------------------------------------------------ chooser cards */
+.wd-card .st-strip { background: var(--rc); box-shadow: 0 0 12px var(--rc); }
+.wd-dialog .dbody { overflow: auto; gap: 16px; }
+
+/* ------------------------------------------------------------------ river dialog */
+.rv-dialog { width: min(560px, calc(100vw - 32px)); }
+.rv-dialog .dbody { display: grid; gap: 14px; overflow: auto; }
+.rv-dialog .dbody > p { margin: 0; font: var(--t-ui); color: var(--ink-2); line-height: 1.5; }
+.rv-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.rv-chip { position: relative; overflow: hidden; }
+.rv-chip::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--rc, transparent); opacity: .85; }
+.rv-chip[aria-pressed="true"] { color: var(--ink); box-shadow: 0 0 0 1px var(--rc, var(--signal)), 0 0 14px -2px var(--rc, var(--signal)), inset 0 1px 0 var(--seam-hi); }
+.rv-status { margin: 0; min-height: 2.6em; font: var(--t-ui); color: var(--ink-2); line-height: 1.45; }
+.rv-dialog footer .key[disabled] { opacity: .45; }
+
+/* the deck's River key while the river is flowing */
+#b-river.lit-on { color: var(--ink); }
