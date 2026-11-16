@@ -4,13 +4,13 @@
 // variant, title, 9:16 or 1:1, a light live preview, and the same frame-exact render worker + WebCodecs export as the PC
 // at 720p, light quality, 30 fps. World cards get tiny light thumbnails, one at a time, when they scroll into view.
 // No studio engine here; an AudioContext is made only if you press Listen.
-import { h, icon } from '../ui/controls.js?v=8';
-import { SONGS, songBytes } from '../../lib/songs.js?v=8';
-import { makeVideo, decodeAudio, saveVideo, pickCodecs } from './video.js?v=8';
-import { computeFeatures, frameAt, idleFeatures } from './features.js?v=8';
-import { MOOD_LIST, fmtEta, kbmb, previewPacer } from './common.js?v=8';
-import { createPreview } from './preview.js?v=8';
-import { listScenes, GROUPS, DEFAULT_SCENE } from './scenes/index.js?v=8';
+import { h, icon } from '../ui/controls.js?v=11';
+import { SONGS, songBytes } from '../../lib/songs.js?v=11';
+import { makeVideo, decodeAudio, saveVideo, pickCodecs } from './video.js?v=11';
+import { computeFeatures, frameAt, idleFeatures } from './features.js?v=11';
+import { MOOD_LIST, fmtEta, kbmb, previewPacer } from './common.js?v=11';
+import { createPreview } from './preview.js?v=11';
+import { listScenes, GROUPS, DEFAULT_SCENE } from './scenes/index.js?v=11';
 
 const SIZES = { '9:16': [720, 1280], '1:1': [720, 720] };     // the phone makes 720p only
 const QUALITY = 'light', FPS = 30;
