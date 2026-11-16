@@ -1,9 +1,9 @@
 // exporter.js - master export: offline render with the reverb tail -> WAV 24-bit + MP3 320 kbps -> one .zip -> downloads.
-import { trimTail, measure, encodeWav, encodeMp3, makeZip, saveFile } from '../../lib/export.js?v=10b';
-// [Slowreel upgrade] state.js?v=8: the instance app.js owns (S.project / S.engine live there). This file previously
-// read state.js?v=10b - a second module instance whose S.project is always null under plain static hosting, which
+import { trimTail, measure, encodeWav, encodeMp3, makeZip, saveFile } from '../../lib/export.js?v=11';
+// [Slowreel upgrade] state.js?v=11: the instance app.js owns (S.project / S.engine live there). This file previously
+// read state.js?v=11 - a second module instance whose S.project is always null under plain static hosting, which
 // crashed every render/export with "Cannot read properties of null (reading 'loop')". Same file, canonical stamp.
-import { S, clone, bpb } from './state.js?v=8';
+import { S, clone, bpb } from './state.js?v=11';
 
 const safeName = s => (s || 'Slowreel').replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-').slice(0, 60) || 'Slowreel';
 export const songSeconds = p => (p.lengthBars * (p.beatsPerBar || 4)) * 60 / p.bpm;

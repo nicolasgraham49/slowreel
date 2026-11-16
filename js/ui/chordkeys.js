@@ -1,7 +1,7 @@
 // chordkeys.js - "Chord keys": while it is on, one computer key plays a whole chord (or a second voice) built from the
 // tape's key and scale. The key Nico presses always sounds as pressed; the helper notes come from the scale around it.
 // On/off and the style are remembered per viewer (localStorage), never in the project.
-import { scaleById, keyIndex, snapToScale } from './theory.js?v=10b';
+import { scaleById, keyIndex, snapToScale } from './theory.js?v=11';
 
 export const CHORD_STYLES = [
   { id: 'chord', name: 'Chord', tip: 'A soft three-note chord from the scale.' },
