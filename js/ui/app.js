@@ -9,6 +9,7 @@ import { initRoll, render as renderRoll, setRollHead, zoom as rollZoom } from '.
 import { initPanels, renderTab, renderSongClip, updateMixMeters, animateCloud, KEYMAP, markKbKey } from './panels.js?v=11';
 import { createDeck, createVU } from './deck.js?v=11';
 import { exportMaster, renderProject, songSeconds, kb } from './exporter.js?v=11';
+import { exportStems } from './stem-export.js?v=12';
 import { initPhone, phoneFrame } from './phone.js?v=11';
 import { KEYS, CHORDS, scaleGroups } from './theory.js?v=11';
 import { TRACK_COLORS } from './sample-project.js?v=11';
@@ -682,6 +683,7 @@ function openExport() {
   $('exp-foot').innerHTML = '';
   $('exp-foot').append(h('button', { class: 'key', id: 'exp-video', title: 'A music video with the fox heart and this mix', onclick: () => { if (exporting) return; closeExport(); openVisual({ kind: 'project' }); } }, icon('heart'), 'Music video'), h('span', { class: 'grow' }),
     h('button', { class: 'key', id: 'exp-cancel', text: 'Close', onclick: () => { if (exporting) exportAbort?.abort(); closeExport(); } }),
+    h('button', { class: 'key', id: 'exp-stems', title: 'One zip with every track as its own WAV - stems for a collaborator', onclick: runStemExport }, icon('export'), 'Stems'),
     h('button', { class: 'key signal', id: 'exp-go', onclick: runExport }, icon('export'), 'Export'));
   $('export-scrim').hidden = false; $('exp-go').focus();
 }
@@ -704,6 +706,22 @@ async function runExport() {
     $('exp-body').append(h('p', { class: 'result err', text: e?.name === 'AbortError' ? 'Export cancelled.' : 'Export stopped: ' + (e?.message || e) }));
     go.disabled = false;
   } finally { exporting = false; }
+}
+async function runStemExport() {
+  if (exporting) return; exporting = true;
+  const go = $('exp-go'), st = $('exp-stems'); go.disabled = true; if (st) st.disabled = true;
+  const bar = $('exp-bar');
+  const status = h('p', { class: 'result', id: 'exp-stem-status', text: 'Packing stems…' });
+  $('exp-body').append(status);
+  try {
+    const r = await exportStems({ onTrack: (i, n, name) => { status.textContent = `Rendering ${name} — stem ${i + 1} of ${n}…`; bar.style.width = Math.round(i / n * 90) + '%'; } });
+    bar.style.width = '100%';
+    const msg = { saved: 'Saved. Find the zip in your downloads.', fallback: 'Downloaded.', declined: 'Saving was declined. Nothing was saved.', unavailable: 'Downloads are not available in this view.', error: `Could not save (${r.saveCode || 'error'}).` }[r.saveStatus];
+    status.textContent = `${msg} ${r.files.length} stems in one zip (${r.zipKb}): ${r.files.map(f => f.name).join(', ')}`;
+  } catch (e) {
+    console.warn(e);
+    status.className = 'result err'; status.textContent = 'Stem export stopped: ' + (e?.message || e);
+  } finally { exporting = false; go.disabled = false; if (st) st.disabled = false; }
 }
 
 // ---------------------------------------------------------------- toast
