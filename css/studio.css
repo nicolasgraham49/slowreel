@@ -524,12 +524,13 @@ select.sel { appearance: none; -webkit-appearance: none; border: 0; border-radiu
   .tape .acts .lb { display: none; }
 }
 
-/* ------------------------------------------------------------------ phone: listen / play pads */
+/* -------------------------------- phone widths: the studio + the pocket deck module */
 .phone { display: none; }
 @media (max-width: 760px) {
   body { overflow: auto; }
-  .app { display: none; }
-  .phone { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 24px; min-height: 100vh; max-width: 520px; margin: 0 auto; }
+  /* Phone gate removed Nov 21, 2026: the full studio (.app) is the phone experience.
+     The standalone pocket page (.phone) stays display:none at this width too — its
+     deck module is hosted by the Golden Hour Room, so the .ph-* rules below stay. */
   .ph-head { display: flex; justify-content: space-between; align-items: center; }
   .ph-head .brand-name { font-size: 19px; }
   .ph-head .label { text-align: right; line-height: 1.4; }
@@ -571,7 +572,7 @@ select.sel { appearance: none; -webkit-appearance: none; border: 0; border-radiu
 .pop .pm-note { margin: 0; color: var(--ink-2); font: 500 12px/1.5 var(--f-sans); }
 .pop #set-speed { color: var(--ink-3); }
 
-/* ------------------------------------------------------------------ phones: Slowreel is made for a computer */
+/* --------------------------------------- legacy ?device=phone screen (tests only) */
 .pconly { display: none; }
 html.pc-only body { overflow: auto; }
 html.pc-only .app, html.pc-only .phone, html.pc-only .toast { display: none !important; }
