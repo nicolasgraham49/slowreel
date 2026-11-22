@@ -32,11 +32,14 @@ const $ = id => document.getElementById(id);
 const LAST_KEY = 'slowreel:last';
 const lsGet = k => { try { return localStorage.getItem(k); } catch { return null; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch { } };
-// Phones get the full studio: the phone gate was removed Nov 21, 2026 (Golden Hour redesign
-// verdict — the Room is the phone experience). ?device=phone still forces the legacy
-// "made for your computer" screen for tests; anything else boots the studio.
+// Slowreel is PC only: a phone (coarse pointer + small screen) gets a calm "open this on your computer" screen and never
+// starts the audio engine. Tablets and touch laptops (wide screens) get the studio. ?device=phone|pc overrides (tests).
 const PC_ONLY_SCREEN = (() => {
-  try { return new URLSearchParams(location.search).get('device') === 'phone'; } catch { return false; }
+  try {
+    const q = new URLSearchParams(location.search).get('device'); if (q === 'phone' || q === 'pc') return q === 'phone';
+    const coarse = matchMedia('(pointer: coarse)').matches, small = Math.min(screen.width || innerWidth, screen.height || innerHeight) < 600;
+    return coarse && small;
+  } catch { return false; }
 })();
 
 // ---------------------------------------------------------------- boot
@@ -911,13 +914,13 @@ else {
   initSteps($('pane-beats'));
   initRhythm();
   $('b-chords').onclick = () => { held.forEach((_, m) => keyOff(m)); toggleChordKeys(); }; syncChordKey();
-  // pocket deck: the Golden Hour Room hosts this deck visual at phone widths; the standalone pocket page is retired
+  // pocket mode: only for a narrow window on a computer (phones get the made-for-your-computer screen instead)
   initVisual({ S, play: () => play(), stop, togglePreview, stopPreview, previewId: () => preview?.id || null, openAudioExport: openExport, toast });
   $('b-visual').onclick = () => openVisual({ kind: 'project' });
   initPhone({ play: () => play(), stop, returnToStart, keyOn: (tid, m) => { S.engine.noteOn(tid, m, 0.7); startLoop(); }, keyOff: (tid, m) => S.engine.noteOff(tid, m), startLoop });
   boot().catch(e => { console.error('[slowreel] boot failed', e); toast('Slowreel could not start: ' + (e?.message || e)); });
 }
-// Legacy screen, reached only via ?device=phone (tests): a calm screen with the reels, no AudioContext, nothing else starts.
+// Phones: Slowreel is made for a computer. A calm screen with the reels, no AudioContext, nothing else starts.
 function showPcOnly() {
   document.documentElement.classList.add('pc-only');
   const sec = $('pconly'); sec.hidden = false;
